@@ -82,23 +82,6 @@
         </div>
       </div>
 
-      <!-- Interaction Form -->
-      <div class="notify-form-container">
-        <h2 class="notify-title" id="notify-heading">Yayınlandığında Haber Ver</h2>
-        <form class="notify-form" id="notifyForm" aria-labelledby="notify-heading">
-          <input 
-            type="email" 
-            id="emailInput" 
-            class="notify-input" 
-            placeholder="E-posta adresinizi yazın..." 
-            required 
-            aria-label="E-posta Adresi"
-          >
-          <button type="submit" class="notify-button">Abone Ol</button>
-        </form>
-        <div class="feedback-msg" id="feedbackMsg" role="alert"></div>
-      </div>
-
     </main>
 
     <!-- Footer & Social Links -->
@@ -121,7 +104,7 @@
     </footer>
   </div>
 
-  <!-- Countdown and Form Logic -->
+  <!-- Countdown Logic -->
   <script>
     // Target date: August 7th, 2026 (00:00:00 Local time)
     const targetDate = new Date('2026-08-07T00:00:00').getTime();
@@ -168,35 +151,6 @@
     // Run immediately and update every second
     updateCountdown();
     const countdownInterval = setInterval(updateCountdown, 1000);
-
-    // Interactive Notification Subscription Form
-    const notifyForm = document.getElementById('notifyForm');
-    const feedbackMsg = document.getElementById('feedbackMsg');
-    const emailInput = document.getElementById('emailInput');
-
-    notifyForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = emailInput.value.trim();
-
-      if (email) {
-        // Mock saving to local storage
-        let subscribers = JSON.parse(localStorage.getItem('miranour_subscribers') || '[]');
-        if (!subscribers.includes(email)) {
-          subscribers.push(email);
-          localStorage.setItem('miranour_subscribers', JSON.stringify(subscribers));
-        }
-
-        // Show successful UI feedback
-        feedbackMsg.textContent = 'Aboneliğiniz başarıyla alındı! Teşekkür ederiz.';
-        feedbackMsg.classList.add('show');
-        emailInput.value = '';
-
-        // Auto hide success message after 5 seconds
-        setTimeout(() => {
-          feedbackMsg.classList.remove('show');
-        }, 5000);
-      }
-    });
   </script>
 </body>
 </html>
